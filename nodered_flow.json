@@ -1,0 +1,200 @@
+[
+    {
+        "id": "6c9d2a47.1a7d04",
+        "type": "tab",
+        "label": "people counter",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "51c2674.8701598",
+        "type": "mqtt in",
+        "z": "6c9d2a47.1a7d04",
+        "name": "",
+        "topic": "VL53L0X/toilet",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4342c680.8a4c38",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "41aed939.9d8768"
+            ]
+        ]
+    },
+    {
+        "id": "41aed939.9d8768",
+        "type": "switch",
+        "z": "6c9d2a47.1a7d04",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 220,
+        "wires": [
+            [
+                "23dfef51.2ef0b"
+            ],
+            [
+                "683e820e.909bec"
+            ]
+        ]
+    },
+    {
+        "id": "2a0ac57e.33cb1a",
+        "type": "api-call-service",
+        "z": "6c9d2a47.1a7d04",
+        "name": "Turn on light",
+        "server": "9c88145d.64c568",
+        "version": 1,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 690,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "683e820e.909bec",
+        "type": "api-call-service",
+        "z": "6c9d2a47.1a7d04",
+        "name": "Turn off light",
+        "server": "9c88145d.64c568",
+        "version": 1,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 510,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23dfef51.2ef0b",
+        "type": "time-range-switch",
+        "z": "6c9d2a47.1a7d04",
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "startTime": "18:00",
+        "endTime": "24:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "2a0ac57e.33cb1a"
+            ],
+            [
+                "dc4dcfb5.776af"
+            ]
+        ]
+    },
+    {
+        "id": "dc4dcfb5.776af",
+        "type": "time-range-switch",
+        "z": "6c9d2a47.1a7d04",
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "startTime": "24:00",
+        "endTime": "06:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 690,
+        "y": 220,
+        "wires": [
+            [
+                "752cddfe.d2e0b4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "752cddfe.d2e0b4",
+        "type": "api-call-service",
+        "z": "6c9d2a47.1a7d04",
+        "name": "Turn on night light",
+        "server": "9c88145d.64c568",
+        "version": 1,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 890,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4342c680.8a4c38",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "HASSIOMQTT",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "Node-Red",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "9c88145d.64c568",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant1",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
