@@ -8,6 +8,12 @@ To avoid awkwardness, I decided to make this sensor.
 It is a smart home sensor peoject based on Arduino using 2 VL53L0X Time Of Flight sensor, detect people moving in and out. Turn on LED indicator when toilet is ocuppied. Send MQTT message to trigger other home automation actions.  
   
 Only tested on esp8266 nodemcu. Other arduino compatible board should also work.  
+
+### Features
+- Turn on led indicator when someone enters  
+- Send number of people to mqtt server for other smart home action integration  
+- Button press to reset number of people to 0. Long press to reboot the board  
+- Home assistant support for other IOT interactions. Such as turning on/off room light. 
   
 ### Arduino Library required:
 PubSubClient  
@@ -15,7 +21,10 @@ SimpleTimer
 
 
 only support one person crossing at a time.  
-scenarios:  
+
+#### Basic explanation: 
+It uses two TOF sensor to detect people moving direction, and hence count people in a room.   
+There are 4 basic scenarios:  
 1. enter  &radic;working  
 sensor1:-----111111--------  
 sensor2:---------111111----  
@@ -32,11 +41,7 @@ sensor2:------1111--------
 sensor1:----111111--------------  
 sensor2:-------------1111111----  
   
-### Features
-- Turn on led indicator when someone enters  
-- Send number of people to mqtt server for other smart home action integration  
-- Button press to reset number of people to 0. Long press to reboot the board  
-- Home assistant and node-red support  
+
 
 ### File structure
 /src/main.cpp --- Arduino code
