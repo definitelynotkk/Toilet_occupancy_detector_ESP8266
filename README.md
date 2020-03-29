@@ -36,7 +36,7 @@ sensor2:-------------1111111----
 - Turn on led indicator when someone enters  
 - Send number of people to mqtt server for other smart home action integration  
 - Button press to reset number of people to 0. Long press to reboot the board  
-- Home assistant and node-red integrated  
+- Home assistant and node-red support  
 
 ### File structure
 /src/main.cpp --- Arduino code
@@ -44,16 +44,17 @@ nodered_flow.json  --- Simple time dependent light control nodered flow
 wiring_diagram.jpg --- wiring
   
 ### Installation
-Connect two sensor as shown  
+Connect sensors as shown. LED and button are optional.
+![image](https://raw.githubusercontent.com/definitelynotkk/Toilet_occupancy_detector_ESP8266/master/schematic.png)
 
-Modify the wifi and mqtt information in the code, use Arduino or PlatformIO to flash into your board.    
+Modify the wifi and mqtt information in the code, and flash into your board using arduino or platform.io  
 
 Before install onto wall, check sensor direction first.  
 
 ### Todolist
 1. add half way turn back scenario   
 2. add reed switch to wake up TOF sensor  
-3. RGB LED support  
+3. RGB LED support 
 4. Preserve status when reboot  
 5. 3D printed case  
 6. sensor and board watchdog..
